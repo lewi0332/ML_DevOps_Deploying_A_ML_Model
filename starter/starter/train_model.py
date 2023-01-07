@@ -1,7 +1,11 @@
-# Script to train machine learning model.
+"""
+Script to train machine learning model.
+
+Author: Derrick Lewis
+"""
 
 from sklearn.model_selection import train_test_split
-
+from ml.data import process_data
 # Add the necessary imports for the starter code.
 
 # Add code to load in the data.
