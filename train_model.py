@@ -13,7 +13,7 @@ from training.model import compare_slice_performance
 from training.model import compute_model_metrics
 
 # Add code to load in the data.
-df = pd.read_csv("../data/census.csv")
+df = pd.read_csv("data/census.csv")
 
 # Optional enhancement, use K-fold cross validation instead of a train-test
 # split.
@@ -58,7 +58,7 @@ print(f"Performance for test set - Precision: {precision},\
  Recall: {recall}, Fbeta: {fbeta}")
 
 original = sys.stdout
-with open("../logs/slice_output.txt", "w") as f:
+with open("logs/slice_output.txt", "w") as f:
     sys.stdout = f
     print(compare_slice_performance(
             test,
@@ -69,9 +69,9 @@ with open("../logs/slice_output.txt", "w") as f:
     sys.stdout = original
 
 # Save model
-with open("../model/model.pkl", "wb") as f:
+with open("model/model.pkl", "wb") as f:
     pickle.dump(model, f)
-with open("../model/encoder.pkl", "wb") as f:
+with open("model/encoder.pkl", "wb") as f:
     pickle.dump(encoder, f)
-with open("../model/labenc.pkl", "wb") as f:
+with open("model/labenc.pkl", "wb") as f:
     pickle.dump(labenc, f)
