@@ -7,10 +7,10 @@ import sys
 import pickle
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from training.data import process_data
-from training.model import train_model
-from training.model import compare_slice_performance
-from training.model import compute_model_metrics
+from functions.data import process_data
+from functions.model import train_model
+from functions.model import compare_slice_performance
+from functions.model import compute_model_metrics
 
 # Add code to load in the data.
 df = pd.read_csv("data/census.csv")
