@@ -13,26 +13,18 @@ from training.data import process_data
 # from training.functions.model import train_model
 
 logging.basicConfig(
-    filename='./logs/churn_library.log',
+    filename='./logs/tests.log',
     level=logging.INFO,
     filemode='w',
     format='%(name)s - %(levelname)s - %(message)s')
 
 
 @pytest.fixture()
-def path():
-    '''
-    Pytest fixture to store path
-    '''
-    return "./data/census.csv"
-
-
-@pytest.fixture()
-def dff(path):
+def dff():
     '''
     Pytest fixture to pass dataframe to various tests.
     '''
-    dff_ = pd.read_csv(path)
+    dff_ = pd.read_csv("data/census.csv")
     return dff_
 
 
