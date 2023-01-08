@@ -3,12 +3,18 @@ This script contains the functions to train and test the model.
 
 Author: Derrick Lewis
 """
-
+import pandas as pd
+import numpy as np
+from typing import Protocol, List, Tuple
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+from data import process_data
 
 
-def train_model(x_train, y_train):
+def train_model(
+        x_train: np.array, 
+        y_train: np.array) -> RandomForestClassifier:
     """
     #TODO Optional: implement hyperparameter tuning.
     Trains a Random Forest Classifier model and returns it.
@@ -36,7 +42,9 @@ def train_model(x_train, y_train):
     return rfm
 
 
-def compute_model_metrics(y_test, preds):
+def compute_model_metrics(
+        y_test: np.array, 
+        preds: np.array) -> Tuple[float, float, float]:
     """
     Validates the trained machine learning model using precision, recall,
     and F1.
@@ -56,17 +64,57 @@ def compute_model_metrics(y_test, preds):
     fbeta = fbeta_score(y_test, preds, beta=1, zero_division=1)
     precision = precision_score(y_test, preds, zero_division=1)
     recall = recall_score(y_test, preds, zero_division=1)
-    return precision, recall, fbeta
+    return precision.round(3), recall.round(3), fbeta.round(3)
 
 
-def inference(model, x_data):
+def compare_slice_performance(
+        dff: pd.DataFrame,
+        d_slice: str,
+        model: RandomForestClassifier,
+        x_test: np.array,
+        y_test: np.array):
+
+    """
+    Compares the performance of the model on slices of the data.
+
+    Inputs
+    ---
+    dff : pd.DataFrame
+        Dataframe containing the features and label.
+    slice : str
+        Name of the column to slice the data on.
+    model : sklearn.ensemble._forest.RandomForestClassifier
+        Trained machine learning model.
+    x_test : np.array
+        Test data after process_data.
+    y_test : np.array
+        Test labels after process_data.
+    Returns
+    ----
+    precision : float
+    recall : float
+    fbeta : float
+    """
+
+    for cat_feat in dff[d_slice].unique():
+        x_data = x_test[dff[d_slice] == cat_feat]
+        y_data = y_test[dff[d_slice] == cat_feat]
+        y_preds = inference(model, x_data)
+        precision, recall, fbeta = compute_model_metrics(y_data, y_preds)
+        print(f"Performance for slice where {d_slice} is {cat_feat} - Precision: {precision},\
+ Recall: {recall}, Fbeta: {fbeta}")
+
+
+def inference(
+        model: RandomForestClassifier, 
+        x_data: np.array) -> np.array:
     """ Run model inferences and return the predictions.
 
     Inputs
     ---
     model : ???
         Trained machine learning model.
-    X : np.array
+    x_data : np.array
         Data used for prediction.
     Returns
     ---

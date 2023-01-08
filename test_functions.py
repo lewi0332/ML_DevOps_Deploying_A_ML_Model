@@ -7,10 +7,11 @@ Date: November 2022
 
 import logging
 import pytest
+import pickle
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
 from training.data import process_data
-# from training.functions.model import train_model
+from training.model import compute_model_metrics, inference
 
 logging.basicConfig(
     filename='./logs/tests.log',
@@ -26,6 +27,20 @@ def dff():
     '''
     dff_ = pd.read_csv("./data/census.csv")
     return dff_
+
+@pytest.fixture()
+def train_data():
+    '''
+    Pytest fixture to pass train data to various tests.
+    '''
+    label = "salary"
+    cat_features = dff.drop(label, axis=1).select_dtypes('object').columns
+    x_train, y_train, encoder, labenc = process_data(
+        dff,
+        categorical_features=cat_features,
+        label=label
+        )
+    return x_train, y_train
 
 
 def test_process_data(dff):
@@ -56,6 +71,7 @@ def test_process_data(dff):
     except AssertionError as err:
         logging.error("Testing import_data(): The file was loaded, but\
          the labels were not encoded correctly: %s", err)
+    
 
 # def test_eda(dff):
 #     '''

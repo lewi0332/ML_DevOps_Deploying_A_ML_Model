@@ -61,9 +61,12 @@ def process_data(
         x_data = dff.drop([label], axis=1)
     else:
         y_data = np.array([])
-
-    x_categorical = x_data[categorical_features].values
-    x_continuous = x_data.drop(*[categorical_features], axis=1)
+    if categorical_features is not None:
+        x_categorical = x_data[categorical_features].values
+        x_continuous = x_data.drop(*[categorical_features], axis=1)
+    else:
+        x_categorical = np.array([])
+        x_continuous = x_data
 
     if training is True:
         encoder = OneHotEncoder(sparse_output=False, handle_unknown="ignore")

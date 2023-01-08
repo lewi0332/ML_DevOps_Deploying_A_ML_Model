@@ -1,0 +1,17 @@
+Performance for slice 12th - Precision: 1.0, Recall: 0.25, Fbeta: 0.4
+Performance for slice Assoc-acdm - Precision: 0.913, Recall: 0.35, Fbeta: 0.506
+Performance for slice HS-grad - Precision: 0.881, Recall: 0.175, Fbeta: 0.291
+Performance for slice Masters - Precision: 0.822, Recall: 0.851, Fbeta: 0.836
+Performance for slice Assoc-voc - Precision: 0.607, Recall: 0.266, Fbeta: 0.37
+Performance for slice Some-college - Precision: 0.851, Recall: 0.257, Fbeta: 0.395
+Performance for slice 10th - Precision: 1.0, Recall: 0.077, Fbeta: 0.143
+Performance for slice 11th - Precision: 1.0, Recall: 0.143, Fbeta: 0.25
+Performance for slice Bachelors - Precision: 0.729, Recall: 0.813, Fbeta: 0.769
+Performance for slice Prof-school - Precision: 0.835, Recall: 0.767, Fbeta: 0.8
+Performance for slice 7th-8th - Precision: 1.0, Recall: 0.25, Fbeta: 0.4
+Performance for slice 5th-6th - Precision: 1.0, Recall: 0.5, Fbeta: 0.667
+Performance for slice 1st-4th - Precision: 1.0, Recall: 0.25, Fbeta: 0.4
+Performance for slice Doctorate - Precision: 0.879, Recall: 0.864, Fbeta: 0.872
+Performance for slice 9th - Precision: 1.0, Recall: 0.143, Fbeta: 0.25
+Performance for slice Preschool - Precision: 1.0, Recall: 1.0, Fbeta: 1.0
+None
