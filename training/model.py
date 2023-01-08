@@ -3,17 +3,15 @@ This script contains the functions to train and test the model.
 
 Author: Derrick Lewis
 """
+from typing import Tuple
 import pandas as pd
 import numpy as np
-from typing import Protocol, List, Tuple
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
-from data import process_data
 
 
 def train_model(
-        x_train: np.array, 
+        x_train: np.array,
         y_train: np.array) -> RandomForestClassifier:
     """
     #TODO Optional: implement hyperparameter tuning.
@@ -43,7 +41,7 @@ def train_model(
 
 
 def compute_model_metrics(
-        y_test: np.array, 
+        y_test: np.array,
         preds: np.array) -> Tuple[float, float, float]:
     """
     Validates the trained machine learning model using precision, recall,
@@ -101,12 +99,12 @@ def compare_slice_performance(
         y_data = y_test[dff[d_slice] == cat_feat]
         y_preds = inference(model, x_data)
         precision, recall, fbeta = compute_model_metrics(y_data, y_preds)
-        print(f"Performance for slice where {d_slice} is {cat_feat} - Precision: {precision},\
- Recall: {recall}, Fbeta: {fbeta}")
+        print(f"Performance for slice where {d_slice} is {cat_feat} -\
+Precision: {precision}, Recall: {recall}, Fbeta: {fbeta}")
 
 
 def inference(
-        model: RandomForestClassifier, 
+        model: RandomForestClassifier,
         x_data: np.array) -> np.array:
     """ Run model inferences and return the predictions.
 

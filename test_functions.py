@@ -7,11 +7,9 @@ Date: November 2022
 
 import logging
 import pytest
-import pickle
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
 from training.data import process_data
-from training.model import compute_model_metrics, inference
 
 logging.basicConfig(
     filename='./logs/tests.log',
@@ -27,6 +25,7 @@ def dff():
     '''
     dff_ = pd.read_csv("./data/census.csv")
     return dff_
+
 
 @pytest.fixture()
 def train_data():
