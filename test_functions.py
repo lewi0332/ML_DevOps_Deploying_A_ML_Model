@@ -25,7 +25,7 @@ def path():
     '''
     Pytest fixture to store path
     '''
-    return "data/census.csv"
+    return "./data/census.csv"
 
 
 @pytest.fixture()
