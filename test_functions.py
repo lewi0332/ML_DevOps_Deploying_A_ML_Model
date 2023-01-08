@@ -9,7 +9,7 @@ import logging
 import pytest
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
-from training.data import process_data
+from functions.data import process_data
 
 logging.basicConfig(
     filename='./logs/tests.log',
