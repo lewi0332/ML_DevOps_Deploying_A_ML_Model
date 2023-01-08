@@ -1,4 +1,5 @@
-[![example workflow](https://github.com/lewi0332/ML_DevOps_Deploying_a_Machine_Learning_Model/actions/workflows/pylint.yml/badge.svg)]()
+[![example workflow](https://github.com/lewi0332/ML_DevOps_Deploying_a_Machine_Learning_Model/actions/workflows/pylint.yml/badge.svg)](https://github.com/lewi0332/ML_DevOps_Deploying_a_Machine_Learning_Model/actions)
+[![example workflow](https://github.com/lewi0332/ML_DevOps_Deploying_a_Machine_Learning_Model/actions/workflows/python-package.yml/badge.svg)](https://github.com/lewi0332/ML_DevOps_Deploying_a_Machine_Learning_Model/actions)
 
 Working in a command line environment is recommended for ease of use with git and dvc. If on Windows, WSL1 or 2 is recommended.
 
