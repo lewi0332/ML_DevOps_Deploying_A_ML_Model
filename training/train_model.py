@@ -26,7 +26,7 @@ cat_features = [
     "sex",
     "native-country",
 ]
-x_train, y_train, encoder, lb = process_data(
+x_train, y_train, encoder, labenc = process_data(
     train, categorical_features=cat_features, label="salary", training=True
 )
 
@@ -34,6 +34,9 @@ x_train, y_train, encoder, lb = process_data(
 model = train_model(x_train, y_train)
 
 # Save model
-pickle.dump(model, open("../model/model.pkl", "wb"))
-pickle.dump(encoder, open("../model/encoder.pkl", "wb"))
-pickle.dump(lb, open("../model/lb.pkl", "wb"))
+with open("../model/model.pkl", "wb") as f:
+    pickle.dump(model, f)
+with open("../model/encoder.pkl", "wb") as f:
+    pickle.dump(encoder, f)
+with open("../model/labenc.pkl", "wb") as f:
+    pickle.dump(labenc, f)

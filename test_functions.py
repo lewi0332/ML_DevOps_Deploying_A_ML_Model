@@ -5,13 +5,12 @@ Author: Derrick
 Date: November 2022
 """
 
-import os
 import logging
 import pytest
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
 from training.functions.data import process_data
-from training.functions.model import train_model
+# from training.functions.model import train_model
 
 logging.basicConfig(
     filename='./logs/churn_library.log',
@@ -44,7 +43,7 @@ def test_process_data(dff):
     label = "salary"
     cat_features = dff.drop(label, axis=1).select_dtypes('object').columns
     try:
-        x_train, y_train, encoder, lb = process_data(
+        x_train, y_train, encoder, labenc = process_data(
             dff,
             categorical_features=cat_features,
             label=label
@@ -61,6 +60,7 @@ def test_process_data(dff):
     try:
         assert y_train.shape[0] > 0
         assert len(y_train.shape) == 1
+        assert is_numeric_dtype(y_train)
     except AssertionError as err:
         logging.error("Testing import_data(): The file was loaded, but\
          the labels were not encoded correctly: %s", err)
@@ -117,7 +117,8 @@ def test_process_data(dff):
 #         logging.error("FAIL perform_eda(): The heatmap image is \
 #             missing %s", err)
 #     except AssertionError as err:
-#         logging.error("FAIL perform_eda(): The heatmap image is empty %s", err)
+#         logging.error("FAIL perform_eda(): The heatmap image is empty %s",
+#   err)
 
 
 # def test_encoder_helper(dff, path):
@@ -185,7 +186,8 @@ def test_process_data(dff):
 #     '''
 #     train_model(features[0], features[1], features[2], features[3])
 #     try:
-#         assert os.path.getsize('./images/results/feature_importances.png') > 1
+#         assert os.path.getsize('./images/results/feature_importances.png')
+#   > 1
 #     except FileNotFoundError as err:
 #         logging.error("FAIL train_models(): The feature_importances \
 #             image is missing %s", err)
@@ -219,7 +221,8 @@ def test_process_data(dff):
 #     try:
 #         assert os.path.getsize('./models/logistic_model.pkl') > 1
 #     except FileNotFoundError as err:
-#         logging.error("FAIL train_models(): logistic_model is missing %s", err)
+#         logging.error("FAIL train_models(): logistic_model is missing %s",
+# err)
 #     except AssertionError as err:
 #         logging.error("FAIL train_models(): logistic_model is empty %s", err)
 #     try:
