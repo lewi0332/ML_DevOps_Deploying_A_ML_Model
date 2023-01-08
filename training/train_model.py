@@ -6,8 +6,8 @@ Author: Derrick Lewis
 import pickle
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from functions.data import process_data
-from functions.model import train_model
+from training.data import process_data
+from training.model import train_model
 
 # Add code to load in the data.
 df = pd.read_csv("../data/census.csv")

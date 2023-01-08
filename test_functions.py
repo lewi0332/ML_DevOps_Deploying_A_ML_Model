@@ -9,7 +9,7 @@ import logging
 import pytest
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
-from training.functions.data import process_data
+from training.data import process_data
 # from training.functions.model import train_model
 
 logging.basicConfig(

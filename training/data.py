@@ -74,7 +74,7 @@ def process_data(
         x_categorical = encoder.transform(x_categorical)
         try:
             y_data = labenc.transform(y_data.values).ravel()
-        # Catch the case where y is None because we're doing inference.
+        # TODO Catch the case where y is None because we're doing inference.
         except AttributeError:
             pass
 
