@@ -21,4 +21,4 @@ jobs:
         python -m pip install pylint pytest
     - name: Analysing the code with pylint
       run: |
-        pylint $(git ls-files 'training/*.py') -exit-zero   
+        pylint $(git ls-files 'training/*.py') --exit-zero   
