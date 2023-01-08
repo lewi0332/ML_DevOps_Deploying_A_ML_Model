@@ -10,8 +10,8 @@ import logging
 import pytest
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
-from functions.data import process_data
-from functions.model import train_model
+from training.functions.data import process_data
+from training.functions.model import train_model
 
 logging.basicConfig(
     filename='./logs/churn_library.log',
@@ -37,12 +37,18 @@ def dff(path):
     return dff_
 
 
-def test_process_data(path):
+def test_process_data(dff):
     '''
     test data import - This tests the ability to load the training data.
     '''
+    label = "salary"
+    cat_features = dff.drop(label, axis=1).select_dtypes('object').columns
     try:
-        x_train, y_train, encoder, lb = process_data(path)
+        x_train, y_train, encoder, lb = process_data(
+            dff,
+            categorical_features=cat_features,
+            label=label
+            )
         logging.info("Testing import_data: SUCCESS")
     except FileNotFoundError as err:
         logging.error("Testing import_data(): The file wasn't found: %s", err)
@@ -52,7 +58,12 @@ def test_process_data(path):
     except AssertionError as err:
         logging.error("Testing import_data(): The file was loaded but,\
          doesn't appear to have rows and columns: %s", err)
-
+    try:
+        assert y_train.shape[0] > 0
+        assert len(y_train.shape) == 1
+    except AssertionError as err:
+        logging.error("Testing import_data(): The file was loaded, but\
+         the labels were not encoded correctly: %s", err)
 
 # def test_eda(dff):
 #     '''

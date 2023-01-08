@@ -8,14 +8,14 @@ from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
 
 
-def train_model(X_train, y_train):
+def train_model(x_train, y_train):
     """
     #TODO Optional: implement hyperparameter tuning.
     Trains a Random Forest Classifier model and returns it.
 
     Inputs
     ---
-    X_train : np.array
+    x_train : np.array
         Training data.
     y_train : np.array
         Labels.
@@ -32,7 +32,7 @@ def train_model(X_train, y_train):
         max_features="sqrt",
         min_samples_leaf=50
         )
-    rfm.fit(X_train, y_train)
+    rfm.fit(x_train, y_train)
     return rfm
 
 

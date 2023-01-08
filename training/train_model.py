@@ -26,12 +26,12 @@ cat_features = [
     "sex",
     "native-country",
 ]
-X_train, y_train, encoder, lb = process_data(
+x_train, y_train, encoder, lb = process_data(
     train, categorical_features=cat_features, label="salary", training=True
 )
 
 # Train and save a model
-model = train_model(X_train, y_train)
+model = train_model(x_train, y_train)
 
 # Save model
 pickle.dump(model, open("../model/model.pkl", "wb"))
