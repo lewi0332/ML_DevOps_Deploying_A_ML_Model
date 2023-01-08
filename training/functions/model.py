@@ -36,7 +36,7 @@ def train_model(x_train, y_train):
     return rfm
 
 
-def compute_model_metrics(y, preds):
+def compute_model_metrics(y_test, preds):
     """
     Validates the trained machine learning model using precision, recall,
     and F1.
@@ -53,13 +53,13 @@ def compute_model_metrics(y, preds):
     recall : float
     fbeta : float
     """
-    fbeta = fbeta_score(y, preds, beta=1, zero_division=1)
-    precision = precision_score(y, preds, zero_division=1)
-    recall = recall_score(y, preds, zero_division=1)
+    fbeta = fbeta_score(y_test, preds, beta=1, zero_division=1)
+    precision = precision_score(y_test, preds, zero_division=1)
+    recall = recall_score(y_test, preds, zero_division=1)
     return precision, recall, fbeta
 
 
-def inference(model, X):
+def inference(model, x_data):
     """ Run model inferences and return the predictions.
 
     Inputs
@@ -73,4 +73,4 @@ def inference(model, X):
     preds : np.array
         Predictions from the model.
     """
-    return model.predict(X)
+    return model.predict(x_data)
