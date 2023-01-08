@@ -7,9 +7,10 @@ Author: Derrick Lewis
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from sklearn.ensemble import RandomForestClassifier
 
-# Optional: implement hyperparameter tuning.
+
 def train_model(X_train, y_train):
     """
+    #TODO Optional: implement hyperparameter tuning.
     Trains a Random Forest Classifier model and returns it.
 
     Inputs
@@ -28,7 +29,7 @@ def train_model(X_train, y_train):
         oob_score=True,
         n_jobs=-1,
         random_state=42,
-        max_features="auto",
+        max_features="sqrt",
         min_samples_leaf=50
         )
     rfm.fit(X_train, y_train)
@@ -37,7 +38,8 @@ def train_model(X_train, y_train):
 
 def compute_model_metrics(y, preds):
     """
-    Validates the trained machine learning model using precision, recall, and F1.
+    Validates the trained machine learning model using precision, recall,
+    and F1.
 
     Inputs
     ---
