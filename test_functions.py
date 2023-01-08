@@ -24,7 +24,7 @@ def dff():
     '''
     Pytest fixture to pass dataframe to various tests.
     '''
-    dff_ = pd.read_csv("data/census.csv")
+    dff_ = pd.read_csv("./data/census.csv")
     return dff_
 
 
