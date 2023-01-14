@@ -31,3 +31,5 @@ This is self reported information from the census and has opportunity for inaccu
 Predicting an individual's propensity for income is based on a lifelong journey that has had historically been affected by outside factors not present in the data. Even though race, gender and other cultural features are not used to inform the prediction, these bias may be present in secondary data such as location or education.  
 
 ## Caveats and Recommendations
+
+More here soon. 
