@@ -6,14 +6,13 @@ Date: November 2022
 """
 
 import logging
-import pytest
 import pickle
+import pytest
 import pandas as pd
 from pandas.api.types import is_numeric_dtype
 from functions.data import process_data
 from functions.model import train_model
 from functions.model import compute_model_metrics
-from functions.model import compare_slice_performance
 from functions.model import inference
 
 logging.basicConfig(
@@ -45,6 +44,7 @@ def train_data(dff):
         label=label
         )
     return x_train, y_train
+
 
 @pytest.fixture()
 def model():
@@ -84,7 +84,8 @@ def test_process_data(dff):
     except AssertionError as err:
         logging.error("Testing import_data(): The file was loaded, but\
          the labels were not encoded correctly: %s", err)
-    
+
+
 def test_train_model(train_data):
     '''
     test train_model - This tests the ability to train a model.
@@ -100,7 +101,8 @@ def test_train_model(train_data):
 
 def test_compute_model_metrics(train_data):
     '''
-    test compute_model_metrics - This tests the ability to compute model metrics.
+    test compute_model_metrics - This tests the ability to
+    compute model metrics.
     '''
     x_train, y_train = train_data[0], train_data[1]
     model = train_model(x_train, y_train)
@@ -116,6 +118,7 @@ def test_compute_model_metrics(train_data):
     assert recall <= 1
     assert fbeta <= 1
     logging.info("Testing compute_model_metrics: SUCCESS")
+
 
 def test_inference(model, train_data):
     '''

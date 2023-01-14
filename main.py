@@ -118,7 +118,9 @@ async def get_items(inference_json: TaggedItem):
     inference_json = pd.DataFrame(inference_json)
     # Undo the aliasing of the columns needed by pydantic.
     # (Why not just send a json?)
-    inference_json.columns = [c.replace("_", "-") for c in inference_json.columns]
+    inference_json.columns = [
+        c.replace("_", "-") for c in inference_json.columns
+        ]
     data = process_data(
         dff=inference_json,
         categorical_features=categorical_features,

@@ -19,6 +19,12 @@ def data_high():
     return test
 
 
+def test_get_data():
+    r = client.get("/")
+    assert r.status_code == 200
+    assert r.json() == {"greeting": "Welcome to the MLops Project 3 API! \
+Please use docs to see the API documentation."}
+
 def test_post_data_success(data_low):
     data = json.dumps(data_low)
     r = client.post("/predict/", data=data)

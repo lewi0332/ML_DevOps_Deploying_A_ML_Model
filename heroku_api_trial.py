@@ -18,4 +18,5 @@ response = requests.post(
     data=json.dumps(test),
     timeout=5
     )
+print(response)
 print(response.json())  # "<=50k"

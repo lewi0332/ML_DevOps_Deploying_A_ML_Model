@@ -15,8 +15,7 @@ from functions.model import compute_model_metrics
 # Add code to load in the data.
 df = pd.read_csv("data/census.csv")
 
-# Optional enhancement, use K-fold cross validation instead of a train-test
-# split.
+
 train, test = train_test_split(df, test_size=0.20)
 
 cat_features = [
@@ -42,7 +41,6 @@ model = train_model(x_train, y_train)
 
 
 # Compare the performance of the model on the test set
-
 x_test, y_test, encoder, labenc = process_data(
     test,
     categorical_features=cat_features,
@@ -51,12 +49,13 @@ x_test, y_test, encoder, labenc = process_data(
     encoder=encoder,
     labenc=labenc
 )
-
 y_preds = model.predict(x_test)
 precision, recall, fbeta = compute_model_metrics(y_test, y_preds)
 print(f"Performance for test set - Precision: {precision},\
  Recall: {recall}, Fbeta: {fbeta}")
 
+# Compare the performance of the model on the test set sliced by education
+# Write the output to a file
 original = sys.stdout
 with open("logs/slice_output.txt", "w") as f:
     sys.stdout = f
