@@ -4,14 +4,18 @@ import pandas as pd
 import pickle
 import json
 from typing import Union
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
 from fastapi import FastAPI
 from functions.model import inference
 from functions.data import process_data
 
 
 # Instantiate the app.
-app = FastAPI()
+app = FastAPI(
+    title="MLops Project 3 API",
+    description="An API that returns a prediction of our classification model.",
+    version="1.0.0",
+)
 
 #TODO load the model here
 
@@ -51,16 +55,28 @@ class TaggedItem(BaseModel):
     hours_per_week: int=Field(40, alias='hours-per-week')
     native_country: str=Field('United-States', alias='native-country')
 
+    @validator('age')
+    def age_must_be_positive(cls, v):
+        if v < 0:
+            raise ValueError('age must be a positive integer')
+        return v
 
 # Define a GET on the specified endpoint.
 @app.get("/")
 async def say_hello():
-    return {"greeting": "Hello World!"}
+    return {"greeting": "Welcome to the MLops Project 3 API! Please use /docs to see the API documentation."}
 
 
 # This allows sending of data (our TaggedItem) via POST to the API.
-@app.post("/items/")
-async def create_item(item: TaggedItem):
+@app.post("/sample_data/")
+async def check_data(item: TaggedItem):
+    """
+    Use this to return the schema of the data needed for the API.
+    """
+    return item.schema_json(indent=2)
+
+@app.post("/check_data/")
+async def check_data(item: TaggedItem):
     return item
 
 @app.post("/predict/")
@@ -79,7 +95,7 @@ async def get_items(inference_json: TaggedItem):
         encoder=encoder,
         labenc=labenc
         )
-    
+
     prediction = inference(model, data[0])
     print(prediction)
     named_pred = labenc.inverse_transform(prediction)
