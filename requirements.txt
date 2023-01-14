@@ -2,7 +2,7 @@
 # python==3.8.15  
 numpy
 pandas
-scikit-learnf
+scikit-learn
 pytest
 requests
 fastapi==0.63.0
