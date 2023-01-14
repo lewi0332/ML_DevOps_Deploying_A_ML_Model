@@ -61,6 +61,7 @@ def process_data(
         x_data = dff.drop([label], axis=1)
     else:
         y_data = np.array([])
+        x_data = dff
     if categorical_features is not None:
         x_categorical = x_data[categorical_features].values
         x_continuous = x_data.drop(*[categorical_features], axis=1)

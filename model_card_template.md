@@ -11,7 +11,7 @@ The model uses the [Random Forrest Classifier](https://scikit-learn.org/stable/m
 
 ## Intended Use
 
-The model is intended to be used to make either batch or individual predictions given the census features. 
+The model is intended to be used to make either batch or individual predictions when passed the census features. 
 
 ## Training Data
 
@@ -28,6 +28,6 @@ _Please include the metrics used and your model's performance on those metrics._
 
 This is self reported information from the census and has opportunity for inaccuracy. 
 
-To predict an individuals propensity for income is based on a lifelong journey that has had historically been affected by outside factors. 
+Predicting an individual's propensity for income is based on a lifelong journey that has had historically been affected by outside factors not present in the data. Even though race, gender and other cultural features are not used to inform the prediction, these bias may be present in secondary data such as location or education.  
 
 ## Caveats and Recommendations
