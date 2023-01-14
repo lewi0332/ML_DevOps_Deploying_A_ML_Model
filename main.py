@@ -23,7 +23,6 @@ app = FastAPI(
     version="1.0.0",
 )
 
-#TODO load the model here
 
 with open("model/model.pkl", "rb") as f:
     model = pickle.load(f)
