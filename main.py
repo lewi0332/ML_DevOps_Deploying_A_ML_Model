@@ -26,7 +26,8 @@ app = FastAPI(
     version="1.0.0",
 )
 
-
+# Attemped @app.on_event("startup"), but this doesn't work with pytest.
+# load the model and encoders the old fashioned way.
 with open("model/model.pkl", "rb") as f:
     model = pickle.load(f)
 with open("model/encoder.pkl", "rb") as f:
